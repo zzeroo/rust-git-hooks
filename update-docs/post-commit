@@ -12,6 +12,8 @@ dir="$(pwd)"
 last_rev="$(git rev-parse HEAD)"
 last_msg="$(git log -1 --pretty=%B)"
 
+unset GIT_WORK_TREE
+
 msg "Cloning into a temporary directory..."
 # The second call is to support OSX.
 tmp="$(mktemp -d 2>/dev/null || mktemp -d -t 'tmp-rust-docs')"
