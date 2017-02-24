@@ -44,4 +44,22 @@ git push
 
 Now your project has a nice looking homepage under the URL `http(s)://<username>.github.io/<projectname>`.
 
-Repeat these steps if you change the README.md.
+```patch
+diff --git a/update-docs/post-commit b/update-docs/post-commit
+index 3e71b8d..248b668 100755
+--- a/update-docs/post-commit
++++ b/update-docs/post-commit
+@@ -45,6 +45,12 @@ git reset -q -- .gitignore
+ git checkout -q -- .gitignore
+ cp -a target/doc/* .
+ rm target
++# index.html patch. If a index.html exist, update it. Here i use `pandoc`, modify this for your needs.
++if git checkout -q "$DOC_BRANCH" 2>/dev/null; then
++  git checkout master README.md
++  pandoc --self-contained --highlight-style=tango -s -f markdown -t html5 -o index.html README.md
++  rm README.md
++fi
+ git add .
+ git commit -m "Update docs for $last_rev" -m "$last_msg"
+ git push -qu origin "$DOC_BRANCH"
+```
