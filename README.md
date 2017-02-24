@@ -2,6 +2,9 @@
 
 [Homepage](https://zzeroo.github.io/rust-git-hooks/) | [Documentation](https://zzeroo.github.io/rust-git-hooks/rust_git_hooks/index.html)
 
+Here you found a git hook script wich helps you to manage the documentaion of your [rust](https://www.rust-lang.org/) project.
+
+
 ## Usage
 
 1. Copy the update-docs/post-commit file into your .git/hooks/
